@@ -1,0 +1,5 @@
+- name: insall {{component}}
+  hosts: {{component}}
+  become: yes
+  roles:
+  - {{components}}
