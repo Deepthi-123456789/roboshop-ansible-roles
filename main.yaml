@@ -1,5 +1,5 @@
-- name: insall {{component}}
-  hosts: {{component}}
+- name: "insall {{component}}""
+  hosts: "{{component}}""
   become: yes
   roles:
-  - {{components}}
+  - "{{components}}"
