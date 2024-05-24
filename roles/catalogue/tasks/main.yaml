@@ -1,4 +1,4 @@
-- name: app setup 
+- name: app setting 
   ansible.builtin.import_role:
     name: common
     task_from: app-setup
@@ -8,7 +8,7 @@
     name: common
     task_from: nodejs
 
-- name: mongodb setup
+- name: mongodb setting
   ansible.builtin.import_role:
     name: common
     task_from: mongodb-setup
