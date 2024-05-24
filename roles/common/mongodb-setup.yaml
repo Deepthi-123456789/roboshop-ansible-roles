@@ -21,12 +21,12 @@
 
 - name: get the entries count
   ansible.builtin.command:  mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
-  register: entries_count
+  register: product_count
   when: component == "catalogue"
 
 - name: get the entries count
   ansible.builtin.command:  mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
-  register: entries_count
+  register: user_count
   when: component == "user"
 
 
