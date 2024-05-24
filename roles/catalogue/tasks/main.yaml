@@ -1,15 +1,24 @@
-- name: disable old nodejs and enable nodejs
-  ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
+- name: app setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: app-setup
 
-- name: Install nodejs
-  ansible.builtin.dnf:
-    name: nodejs 
-    state: present
+- name: mongodb setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mongodb-setup
 
-- name: Install dependencies
-  ansible.builtin.shell: npm install
-  args:
-    chdir: /app
+- name: nodejs
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: nodejs
+
+
+- name: system
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: systemd
+
     
 
 
