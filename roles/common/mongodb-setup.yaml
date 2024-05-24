@@ -1,0 +1,45 @@
+- name: copy catalogue services
+    ansible.builtin.copy:
+      src: catalogue.service 
+      dest: /etc/systemd/system/catalogue.service
+
+
+  - name: start and enable mongodb
+    ansible.builtin.service:
+      daemon-reload: true
+
+  - name: copy mongodb
+    ansible.builtin.copy:
+      src: mongo.repo  
+      dest: /etc/yum.repos.d/mongo.repo
+
+
+  - name: install mongodb-clinet 
+    ansible.builtin.package:
+      name: mongodb-org-shell
+      state: present 
+
+  - name: get the entries count
+    ansible.builtin.command:  mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
+    register: entries_count
+    when: component == "catalogue"
+
+  - name: get the entries count
+    ansible.builtin.command:  mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
+    register: entries_count
+    when: component == "user"
+
+
+
+  - name: print the count
+    ansible.builtin.debug:
+      msg: "entries count: {{entries_count}}"
+
+  - name: load {{component}} data
+    ansible.builtin.command: mongo --host mongodb.pjdevops.online < /app/schema/{{component}}.js
+    when: entries_count.stdout == "0" # keep double quotes
+
+  
+
+ 
+  
