@@ -7,8 +7,8 @@
   ansible.builtin.service:
     daemon-reload: true
 
- - name: start and enable catalogue
-   ansible.builtin.service:
+- name: start and enable catalogue
+  ansible.builtin.service:
     name: catalogue
     state: restarted
     enabled: yes
