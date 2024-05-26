@@ -1,6 +1,6 @@
 - name: copy {{componenet}} services
   ansible.builtin.copy:
-    src: catalogue.service 
+    src: {{componenet}}.service 
     dest: /etc/systemd/system/{{component}}.service
 
 - name: deamon realod and start
@@ -9,6 +9,6 @@
 
 - name: start and enable {{component}}
   ansible.builtin.service:
-    name: catalogue
+    name: {{componenet}}
     state: restarted
     enabled: yes
