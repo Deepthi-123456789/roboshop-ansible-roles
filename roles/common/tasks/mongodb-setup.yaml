@@ -1,4 +1,4 @@
-
+- MONGODB_HOST: mongodb.pjdevops.online 
 - name: copy mongodb
   ansible.builtin.copy:
     src: mongodb.repo  
