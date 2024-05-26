@@ -8,16 +8,16 @@
   ansible.builtin.service:
     daemon-reload: true
 
-- name: copy mongodb
-  ansible.builtin.copy:
-    src: mongodb.repo  
+
+- name: Copy mongodb repo
+  ansible.builtin.template:
+    src: mongodb.repo
     dest: /etc/yum.repos.d/mongodb.repo
 
-
-- name: install mongodb-clinet 
+- name: Install mongodb client
   ansible.builtin.package:
     name: mongodb-org-shell
-    state: present 
+    state: present
 
 - name: get the catalogue entries count
   ansible.builtin.shell:  mongo --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
