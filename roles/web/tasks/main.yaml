@@ -30,10 +30,10 @@
     dest: /usr/share/nginx/html
     remote_src: yes
 
-- name: copying the conf file
-  ansible.builtin.templet:
+- name: copy roboshop configuration
+  ansible.builtin.template:
     src: roboshop.conf.j2
-    dest: /etc/nginx/default.d/roboshop.conf 
+    dest: /etc/nginx/default.d/roboshop.conf
   notify:
   - Restart nginx
 
