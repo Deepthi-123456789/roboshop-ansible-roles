@@ -8,3 +8,4 @@ CART_HOST: cart.pjdevops.online
 SHIPPING_HOST: shipping.pjdevops.online
 PAYMENT_HOST: payment.pjdevops.online
 DISPATCH_HOST: dispatch.pjdevops.online
+mysql_password: RoboShop@1
