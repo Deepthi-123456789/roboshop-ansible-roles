@@ -1,5 +1,6 @@
-- name: copy mongodb
-  ansible.builtin.copy:
+- name: importing mongodb
+  ansible.builtin.import_files:
+    name: common
     src: mongodb.repo  
     dest: /etc/yum.repos.d/mongodb.repo
 
