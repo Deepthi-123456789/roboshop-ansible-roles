@@ -9,6 +9,6 @@
     chdir: /app
 
 - name: renaming the file
-  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+  ansible.builtin.command: mv target/{{componenet}}-{{shipping_version}}.jar {{componenet}}.jar
   args:
     chdir: /app
