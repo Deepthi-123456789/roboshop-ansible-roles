@@ -1,5 +1,5 @@
 - name: "insall {{component}}"
-  #hosts: "{{component}}"
+  hosts: "{{component}}"
   vars:
   - variables.yaml
   become: yes
