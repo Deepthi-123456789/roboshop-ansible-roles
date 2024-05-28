@@ -32,7 +32,7 @@
 
 - name: copying the conf file
   ansible.builtin.templet:
-    src: roboshop.conf
+    src: roboshop.conf.j2
     dest: /etc/nginx/default.d/roboshop.conf 
   notify:
   - Restart nginx
