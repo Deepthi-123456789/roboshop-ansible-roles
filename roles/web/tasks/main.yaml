@@ -1,40 +1,39 @@
 - name: installing nginx
-    ansible.builtin.package:
-      name: nginx
-      state: present
+  ansible.builtin.package:
+    name: nginx
+    state: present
 
-  - name: starting and enabling nginx
-    ansible.builtin.service:
-      name: nginx
-      state: started
-      enabled: yes
+- name: starting and enabling nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: yes
 
-  - name: remove html directory
-    ansible.builtin.file:
-      path: /usr/share/nginx/html/*
-      state: absent
+- name: remove html directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/*
+    state: absent
 
-  - name: creating html directory
-    ansible.builtin.file:
-      path: /usr/share/nginx/html/*
-      state: directory
+- name: creating html directory
+  ansible.builtin.file:
+    path: /usr/share/nginx/html/*
+    state: directory
 
-  - name: downloading the frontend content
-    ansible.builtin.get_url:
-      url: https://roboshop-builds.s3.amazonaws.com/web.zip
-      dest: /tmp
+- name: downloading the frontend content
+  ansible.builtin.get_url:
+    url: https://roboshop-builds.s3.amazonaws.com/web.zip
+    dest: /tmp
 
-  - name:  files extracting
-    ansible.builtin.unarchive:
-     src: /tmp/web.zip
-     dest: /usr/share/nginx/html
-     remote_src: yes
+- name:  files extracting
+  ansible.builtin.unarchive:
+    src: /tmp/web.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
 
-  - name: copying the conf file
-    ansible.builtin.templet:
-      src: roboshop.conf
-      dest: /etc/nginx/default.d/roboshop.conf 
-    notify:
-    - Restart nginx
+- name: copying the conf file
+  ansible.builtin.templet:
+    src: roboshop.conf
+    dest: /etc/nginx/default.d/roboshop.conf 
+  notify:
+  - Restart nginx
 
-  
