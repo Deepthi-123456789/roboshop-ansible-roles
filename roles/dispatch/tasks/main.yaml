@@ -6,7 +6,7 @@
 - name: go
   ansible.builtin.import_role:
     name: common
-    tasks_from: ngo
+    tasks_from: go
 
 - name: system start
   ansible.builtin.import_role:
