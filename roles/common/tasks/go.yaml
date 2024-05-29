@@ -5,7 +5,7 @@
 
 - name: changing directory
   ansible.builtin.command: "{{item}}"
-  loops:
+  loop:
   - go mod init dispatch
   - go get 
   - go build
